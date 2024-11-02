@@ -2,6 +2,15 @@ import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
+/**
+ * GET /api/search.json
+ *
+ * Searches for articles using a query string and returns the search results
+ * as a JSON array.
+ *
+ * @param {URL} url - The URL object with the query string.
+ * @returns {Promise<Response>} A Promise that resolves to a Response object.
+ */
 export const GET: APIRoute = async ({ url }): Promise<Response> => {
   const query: string | null = url.searchParams.get('query');
 
