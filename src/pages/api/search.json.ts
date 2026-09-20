@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
+import { getEntrySlug } from '../../utils';
 
 /**
  * GET /api/search.json
@@ -39,11 +40,11 @@ export const GET: APIRoute = async ({ url }): Promise<Response> => {
       .toLowerCase()
       .includes(query!.toLowerCase());
 
-    const bodyMatch: boolean = article.body
+    const bodyMatch: boolean = (article.body ?? '')
       .toLowerCase()
       .includes(query!.toLowerCase());
 
-    const slugMatch: boolean = article.slug
+    const slugMatch: boolean = getEntrySlug(article)
       .toLowerCase()
       .includes(query!.toLowerCase());
 

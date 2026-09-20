@@ -1,7 +1,7 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 import Tags from "../../components/Tags.astro";
-import { getEntry } from 'astro:content';
+import { getEntry, render } from 'astro:content';
 import { formatDate } from "../../utils";
 
 const { slug } = Astro.params;
@@ -16,7 +16,7 @@ if(entry === undefined) {
   return Astro.redirect('/404');
 }
 
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 
 <MainLayout>
